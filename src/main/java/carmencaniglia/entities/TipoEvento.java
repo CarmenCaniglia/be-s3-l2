@@ -1,2 +1,5 @@
-package carmencaniglia.entities;public enum TipoEvento {
+package carmencaniglia.entities;
+
+public enum TipoEvento {
+    PUBBLICO, PRIVATO
 }
