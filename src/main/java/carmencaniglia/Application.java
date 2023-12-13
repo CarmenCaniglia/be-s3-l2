@@ -53,7 +53,7 @@ public class Application {
             EventoDAO eventoDAO = new EventoDAO(em);
             eventoDAO.save(evento);
 
-            // partecipazione della persona all'evento
+            // partecipazione all'evento
             eventoDAO.addPartecipazione(persona, evento, StatoPartecipazione.CONFERMATA);
 
             // ricerca di evento per ID
