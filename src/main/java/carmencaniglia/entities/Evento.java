@@ -39,6 +39,15 @@ public class Evento {
         this.numPartecipanti = numPartecipanti;
     }
 
+    public void aggiungiPartecipazione(Partecipazione partecipazione) {
+        partecipazioni.add(partecipazione);
+        partecipazione.setEvento(this);
+    }
+
+    public long getId() {
+        return id;
+    }
+
     public String getTitolo() {
         return titolo;
     }

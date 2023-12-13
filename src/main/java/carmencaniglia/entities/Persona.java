@@ -1,10 +1,9 @@
 package carmencaniglia.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "persone")
@@ -17,6 +16,13 @@ public class Persona {
     private String email;
     private LocalDate compleanno;
     private Sesso sesso;
+    @OneToMany(mappedBy = "persona")
+    private List<Partecipazione> partecipazioni = new ArrayList<>();
+
+    public void aggiungiPartecipazione(Partecipazione partecipazione) {
+        partecipazioni.add(partecipazione);
+        partecipazione.setPersona(this);
+    }
 
     public Persona(){}
     public Persona(String nome, String cognome, String email, LocalDate compleanno, Sesso sesso) {
@@ -70,4 +76,6 @@ public class Persona {
     public void setSesso(Sesso sesso) {
         this.sesso = sesso;
     }
+
+
 }
