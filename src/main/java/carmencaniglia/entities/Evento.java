@@ -3,6 +3,7 @@ package carmencaniglia.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "eventi")
@@ -21,6 +22,13 @@ public class Evento {
     private TipoEvento tipoEvento;
     @Column(name = "num_max_partecipanti")
     private int numPartecipanti;
+
+    @OneToMany(mappedBy = "evento") //relazione bidirezionale, mappedby specifica il nome dell'attributo a cui collegarsi
+    private Set<Partecipazione> partecipazioni; //lista partecipazioni associate all'evento
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")//Chiave esterna
+    private Location location;
 
     public Evento(){}
     public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numPartecipanti) {
@@ -69,6 +77,22 @@ public class Evento {
 
     public void setNumPartecipanti(int numPartecipanti) {
         this.numPartecipanti = numPartecipanti;
+    }
+
+    public Set<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
+    }
+
+    public void setPartecipazioni(Set<Partecipazione> partecipazioni) {
+        this.partecipazioni = partecipazioni;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override

@@ -1,9 +1,6 @@
 package carmencaniglia.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "partecipazioni")
@@ -11,8 +8,16 @@ public class Partecipazione {
     @Id
     @GeneratedValue
     private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
     private Persona persona;
+
+    @ManyToOne
+    @JoinColumn(name = "evento_id")
     private Evento evento;
+
+    @Enumerated(EnumType.STRING)
     private StatoPartecipazione statoPartecipazione;
 
     public Partecipazione(){}
@@ -22,6 +27,8 @@ public class Partecipazione {
         this.evento = evento;
         this.statoPartecipazione = statoPartecipazione;
     }
+
+
 
     public long getId() {
         return id;
